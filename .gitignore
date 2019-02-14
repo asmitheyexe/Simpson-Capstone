@@ -2,6 +2,8 @@
 *.class
 .idea
 out
+src/smith/adam/database/DBConnection.java
+
 # Log file
 *.log
 
