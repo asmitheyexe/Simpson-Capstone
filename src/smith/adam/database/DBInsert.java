@@ -1,27 +1,20 @@
 package smith.adam.database;
 
-import sample.CentralControl;
-
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
-import smith.adam.database.Clients;
 import javafx.scene.control.*;
-import javafx.scene.control.Label;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import smith.adam.database.GetClientsDAO;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class DBInsert extends Application{
 
     private static Stage newWindow;
-    private static Clients person= new Clients();
+    private static Clients person = new Clients();
 
 
 
@@ -30,7 +23,7 @@ public class DBInsert extends Application{
 
     }
 
-    public static void newWindow(){
+    public static void openWindow(){
         newWindow = new Stage();
         newWindow.setScene(makeScene());
         newWindow.show();
@@ -45,7 +38,7 @@ public class DBInsert extends Application{
 
         Button insertBtn = new Button();
         insertBtn.setPadding(new Insets(10,10,10,10));
-        insertBtn.setText("Insert into the Database");
+        insertBtn.setText("Save and Insert into Database");
 
         VBox sideButtons = new VBox(insertBtn);
         sideButtons.setPadding(new Insets(10));
@@ -89,12 +82,9 @@ public class DBInsert extends Application{
                 person.setLastName(inputlName.getText());
                 person.setAddress(inputAddress.getText());
 
-                try {
-                    person.setId(IdentificationNumberGetter.nextID());
-                }catch (Exception i){System.out.println("Error in opening file for ID");};
-
-
                 insertIntoDB();
+                DBViewTable.updateTable();
+                newWindow.close();
 
             }catch(Exception c){System.out.println("Error with inserting into the Database");}
         });
@@ -113,14 +103,20 @@ public class DBInsert extends Application{
         try{
             conn = DBConnection.getConnection();
 
-            String sql = "INSERT INTO JASWData.Clients VALUES ("+person.getFirstName()+","+person.getLastName()+","+person.getId()+","+person.getPhoneNumber()+","+person.getAddress()+");";
+            String sql = "INSERT INTO JASWData.Clients (firstName, lastName,address, phoneNumber) VALUES (?,?,?,?);";
 
             stmt = conn.prepareStatement(sql);
-
-            stmt.executeQuery();
+            stmt.setString(1,person.getFirstName());
+            stmt.setString(2, person.getLastName());
+            stmt.setString(4,person.getPhoneNumber());
+            stmt.setString(3,person.getAddress());
+            stmt.execute();
 
             } catch(Exception e){
-            System.out.println("Error for database");
+            System.out.println("Error when inserting into database");
+        }finally{
+            conn.close();
+            stmt.close();
         }
 
 
