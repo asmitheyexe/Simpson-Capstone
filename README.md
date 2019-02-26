@@ -7,4 +7,5 @@ The File that is used to get a connection to the database is not included. I wil
 2/14/19 - whats working
 -There is a GUI that appears on startup that grabs the clients out of the AWS databse and displays their information in a table. 
 
-Next Objective - Allow the user to fill in text feilds and insert the information into the databse as a new record.
+2/26/19 -whats working
+-User can now Get, Edit, Delete clients from the Database. The user's input is not being validated yet. Will implement soon
