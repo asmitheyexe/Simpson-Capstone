@@ -9,3 +9,6 @@ The File that is used to get a connection to the database is not included. I wil
 
 2/26/19 -whats working
 -User can now Get, Edit, Delete clients from the Database. The user's input is not being validated yet. Will implement soon
+
+3/1/19 - AGENDA
+-Finish Database validation, rebuild the database, Enforce Regular Expressions on user input, DOCUMENT MY CODE
