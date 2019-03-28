@@ -12,3 +12,6 @@ The File that is used to get a connection to the database is not included. I wil
 
 3/1/19 - AGENDA
 -Finish Database validation, rebuild the database, Enforce Regular Expressions on user input, DOCUMENT MY CODE
+
+3/28/19 - UPDATE
+- Tried making the code less hard coded. The program runs slower due to constant calls to the database to retrieve column names. Need to figure out a way to store Column names in memory on startup so i dont need to keep calling the Database everytime I make a SQL statement for just column names. DOCUMENT MY CODE.
