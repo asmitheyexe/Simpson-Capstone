@@ -1,6 +1,5 @@
-package smith.adam.database;
+package smith.adam.database.DatabaseClasses;
 
-import com.sun.tools.javac.Main;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,18 +27,18 @@ public class DBViewTable extends Application {
 
     }
 
-    public static void newWindow(){
+    public static void newWindow()throws  Exception{
         newWindow = new Stage();
         newWindow.setScene(MainBox());
         newWindow.show();
 
     }
 
-    public static void updateTable(){
+    public static void updateTable()throws Exception{
         newWindow.setScene(MainBox());
     }
 
-    private static Scene MainBox(){
+    private static Scene MainBox() throws Exception{
 
         HBox topMenu = new HBox();
 
@@ -53,7 +52,13 @@ public class DBViewTable extends Application {
         btnDelete.setOnAction(e -> DBDelete.openWindow());
 
         Button updateBtn = new Button("Refresh Table");
-        updateBtn.setOnAction( e -> updateTable());
+        updateBtn.setOnAction( e -> {
+            try{
+                updateTable();
+            }catch (Exception c){
+                System.out.println("Exception in mainBox Update button");
+            }
+        });
 
         topMenu.getChildren().addAll(btnCreate, btnEdit, btnDelete, updateBtn);
 
@@ -80,13 +85,19 @@ public class DBViewTable extends Application {
     }
 
 
-    public static TableView<Clients> makeColumns(){
+    public static TableView<Clients> makeColumns() throws Exception{
         TableView<Clients> table;
         String firstName = "firstName";
         String lastName = "lastName";
-        String id = "id";
+        String client_id = "client_id";
         String phoneNum = "phoneNumber";
-        String address =  "address";
+        String streetAdr =  "streetAdr";
+        String city =  "city";
+        String state =  "state";
+        String unit =  "unit";
+        String zip =  "zip";
+
+        List<String> columnNames;
 
         //first name column
         TableColumn<Clients, String> firstNameC = new TableColumn<>(firstName);
@@ -98,54 +109,63 @@ public class DBViewTable extends Application {
         lastNameC.setMinWidth(50);
         lastNameC.setCellValueFactory(new PropertyValueFactory<>(lastName));
 
-        //id column
-        TableColumn<Clients, Integer> idC = new TableColumn<>(id);
-        idC.setMinWidth(25);
-        idC.setCellValueFactory(new PropertyValueFactory<>(id));
-
         //phone column
         TableColumn<Clients, String> phoneC = new TableColumn<>(phoneNum);
         phoneC.setMinWidth(100);
         phoneC.setCellValueFactory(new PropertyValueFactory<>(phoneNum));
 
-        //addr column
-        TableColumn<Clients, String> addrC = new TableColumn<>(address);
-        addrC.setMinWidth(200);
-        addrC.setCellValueFactory(new PropertyValueFactory<>(address));
+        //street addr column
+        TableColumn<Clients, String> streetAddrC = new TableColumn<>(streetAdr);
+        streetAddrC.setMinWidth(100);
+        streetAddrC.setCellValueFactory(new PropertyValueFactory<>(streetAdr));
+
+
+        TableColumn<Clients, String> unitC = new TableColumn<>(unit);
+        unitC.setMinWidth(50);
+        unitC.setCellValueFactory(new PropertyValueFactory<>(unit));
+
+        TableColumn<Clients, String> cityC = new TableColumn<>(city);
+        cityC.setMinWidth(50);
+        cityC.setCellValueFactory(new PropertyValueFactory<>(city));
+
+        TableColumn<Clients, String> stateC = new TableColumn<>(state);
+        stateC.setMinWidth(50);
+        stateC.setCellValueFactory(new PropertyValueFactory<>(state));
+
+        TableColumn<Clients, String> zipC = new TableColumn<>(zip);
+        zipC.setMinWidth(50);
+        zipC.setCellValueFactory(new PropertyValueFactory<>(zip));
+
+        //id column
+        TableColumn<Clients, Integer> idC = new TableColumn<>(client_id);
+        idC.setMinWidth(25);
+        idC.setCellValueFactory(new PropertyValueFactory<>(client_id));
 
         table = new TableView<>();
         table.setItems(getClients());
-        table.getColumns().addAll(firstNameC, lastNameC, idC, phoneC, addrC);
+        table.getColumns().addAll(firstNameC, lastNameC, phoneC,streetAddrC, unitC, cityC,stateC,zipC,idC);
 
         return table;
     }
 
-    private static ObservableList<Clients> getClients(){
+    private static ObservableList<Clients> getClients() throws Exception{ //Uses JavaFX's ObservableList to store object for building a Table
         ObservableList<Clients> clients_fx = FXCollections.observableArrayList();
         List<Clients> list = new LinkedList<>();
-        list = GetClientsDAO.getPeople();
+        list = SqlStatements.getPeople(); // returns all the rows in the Clients Database
         for(Clients person : list){
-            clients_fx.add(person);
+            clients_fx.add(person); //add the client to the FX array
         }
 
-        return clients_fx;
+        return clients_fx; //return the Objects from Database
     }
 
-    private static Scene dataTable_Scene(){
-        TableView<Clients> table;
-        table = makeColumns();
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(table);
-        Scene dataScene = new Scene(vBox);
-        return dataScene;
-    }
 
-    private static VBox dataTable_vBox(){
+    private static VBox dataTable_vBox() throws Exception{ // creating the Scene for the Database Table in the Window
         TableView<Clients> table;
-        table = makeColumns();
+        table = makeColumns(); // Calls the method that creates the columns and fills them.
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(table);
-        vBox.maxWidth(500);
+        vBox.getChildren().addAll(table); // add the Scene to a container to make it easier to access
+        vBox.maxWidth(500); // setting how big the table can be
         return vBox;
     }
 

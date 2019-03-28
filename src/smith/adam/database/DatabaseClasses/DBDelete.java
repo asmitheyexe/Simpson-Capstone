@@ -1,5 +1,4 @@
-package smith.adam.database;
-
+package smith.adam.database.DatabaseClasses;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -36,9 +35,8 @@ public class DBDelete extends Application {
         layout.setHgap(10);
 
         //VBox container = new VBox();
-        final TextField inputText = new TextField();
-        inputText.setPromptText("Remove from Database");
-        inputText.setPrefColumnCount(10);
+        String textPrompt= "Remove from Database";
+        final TextField inputText = TextFieldFactory.makeTextField(textPrompt);
         inputText.setPadding(new Insets(10));
         GridPane.setConstraints(inputText, 0,0);
 
@@ -49,9 +47,10 @@ public class DBDelete extends Application {
 
         deleteBtn.setOnAction(e -> {
             try {
+
                 String id = inputText.getText();
-                deleteFromDB(Integer.parseInt(id));
-                DBViewTable.updateTable();
+                SqlStatements.deletePerson(Integer.parseInt(id)); // call the method in the SQL statments class to handle the work
+                DBViewTable.updateTable(); //update the table
                 newWindow.close();
 
             }catch(Exception badDelete){System.out.println("Bad input from text");}
@@ -63,28 +62,6 @@ public class DBDelete extends Application {
         return new Scene(layout);
     }
 
-    private static void deleteFromDB(int value) throws Exception{
 
-        Connection conn = null;
-        PreparedStatement stmt = null;
-
-        try{
-            conn = DBConnection.getConnection();
-
-            String sql = "DELETE FROM JASWData.Clients  WHERE id = ?;";
-
-            stmt = conn.prepareStatement(sql);
-            stmt.setInt(1,value);
-            stmt.execute();
-
-        } catch(Exception e){
-            System.out.println("Error when deleting from database");
-        }finally{
-            conn.close();
-            stmt.close();
-        }
-
-
-    }
 
 }

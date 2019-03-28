@@ -2,8 +2,7 @@
 *.class
 .idea
 out
-src/smith/adam/database/DBConnection.java
-
+src/smith/adam/database/DatabaseClasses/storage/ConfigStuff/context.txt
 # Log file
 *.log
 
