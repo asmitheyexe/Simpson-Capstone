@@ -26,7 +26,6 @@ public class DBInsert extends Application{
         newWindow = new Stage();
         newWindow.setScene(makeScene());
         newWindow.show();
-
     }
 
     private static Scene makeScene(){
@@ -42,20 +41,7 @@ public class DBInsert extends Application{
                     SqlStatements.insertPerson(person); //insert the person into the database
                     DBViewTable.updateTable();
                     newWindow.close();
-                }else{
-
-                    /*
-                        Implement error handling with ErrorMessageFactory
-                     */
-                    Stage errorWindow = new Stage();
-                    Label error = new Label("Error with one of the Entries");
-                    VBox errorBox = new VBox();
-                    errorBox.getChildren().addAll(error);
-                    Scene errorScene = new Scene(errorBox);
-                    errorWindow.setScene(errorScene);
-                    errorWindow.show();
                 }
-
             }catch(Exception c){System.out.println("Error with creating client " + c);}
         });
         return new Scene(GenericSceneClasses.returnInsertEditScene(insertBtn,listOfFields));

@@ -11,8 +11,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import smith.adam.database.DatabaseClasses.DBViewTable;
+import smith.adam.invoice.InvoiceMainScene;
 
-import java.awt.*;
+
 import java.io.FileInputStream;
 
 public class CentralControl extends Application{
@@ -62,6 +63,13 @@ public class CentralControl extends Application{
         invoiceBtn.setPrefWidth(maxHeight);
 
         //The invoice will be implemented later
+        invoiceBtn.setOnAction(e -> {
+            try{
+                InvoiceMainScene.newWindow();
+            }catch(Exception c){
+                System.out.println("Error with Invoice button " + c);
+            }
+        });
 
         databaseBtn.setOnAction(e -> {
             try{

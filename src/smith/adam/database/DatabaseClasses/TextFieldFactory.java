@@ -25,7 +25,6 @@ public class TextFieldFactory {
         List<String> strings = new LinkedList<>();
         for(TextField field : listOfFields){
             strings.add(field.getText());
-            System.out.println(field.getText());
         }
         return new Clients(strings.get(0), strings.get(1), strings.get(2), strings.get(3), strings.get(4), strings.get(5), strings.get(6), strings.get(7), id);
 

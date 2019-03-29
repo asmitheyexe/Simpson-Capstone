@@ -151,7 +151,6 @@ public class SqlStatements {
 
             String sql = "SELECT * FROM JASWData.Clients WHERE "+ DatabaseColumnNames.getIdColumn() +" = ?;";
 
-
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, ID);
             rs = stmt.executeQuery();

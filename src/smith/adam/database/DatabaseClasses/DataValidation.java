@@ -33,48 +33,37 @@ public class DataValidation {
 
     public static Clients validateEntry(Clients person){
         int[] dataIsValid = new int[5];
+        String errors = "";
         if(DataValidation.isFirstLastNamePattern(person.getFirstName()) && DataValidation.isFirstLastNamePattern(person.getLastName())){
             dataIsValid[0] = 1;
         }else{
-            /*
-            Pop error for names
-             */
-            System.out.println("First or Last name is bad");
+            if(!DataValidation.isFirstLastNamePattern(person.getFirstName())){
+                errors += "First name is formatted wrong, \n";
+            }
+            if(!DataValidation.isFirstLastNamePattern(person.getLastName())){
+                errors += "Last name is formatted wrong, \n";
+            }
         }
         if(DataValidation.isPhoneNumberPattern(person.getPhoneNumber())){
             dataIsValid[1] =1;
         }else{
-            /*
-            Pop error for names
-             */
-            System.out.println("Phone Number is bad");
+            errors += "Phone number is formatted wrong, \n";
         }
 
         if(DataValidation.isUnitPattern(person.getUnit()) || person.getUnit().equals("")){
-
             dataIsValid[2] =1;
         }else{
-            /*
-                Error popup
-             */
-            System.out.println("Unit is bad");
+            errors += "Unit is formatted wrong, \n";
         }
         if(DataValidation.isStatePattern(person.getState())){
             dataIsValid[3] =1;
         }else{
-            /*
-            Pop error for names
-             */
-            System.out.println("State is bad");
+            errors += "State is formatted wrong (Iowa = IA), \n";
         }
         if(DataValidation.isZipPattern(person.getZip())){
             dataIsValid[4] = 1;
         }else{
-            /*
-              Pop up error
-              using ErrorMessageFactory once implemented
-             */
-            System.out.println("Zip is bad");
+            errors += "Zip code is formatted wrong \n";
         }
 
         int total = 0;
@@ -84,7 +73,7 @@ public class DataValidation {
         if(total == 5){
             return person;
         }
-
+        ErrorMessageFactory.displayError(errors);
 
         return new Clients();
     }

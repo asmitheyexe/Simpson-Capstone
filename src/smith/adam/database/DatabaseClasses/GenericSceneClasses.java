@@ -23,10 +23,6 @@ public class GenericSceneClasses {
         final String zipPromptText = "Enter ZipCode";
         List<TextField> listOfFields = new LinkedList<>();
 
-        /*
-         * Add every TextField to the list for easy use of TextFieldFactory class
-         */
-
         //input first name
         final TextField inputFirstName = TextFieldFactory.makeTextField(firstNamePromptText);
         inputFirstName.setText(person.getFirstName());
@@ -90,6 +86,21 @@ public class GenericSceneClasses {
 
         return layout;
     }
+    public static GridPane returnInvoiceFields(List<TextField> listOfFields){
+        GridPane layout = new GridPane();
+        layout.setPadding(new Insets(10,10,10,10));
+
+        VBox textFields = new VBox();
+
+        for (TextField i : listOfFields){
+            textFields.getChildren().addAll(i);
+        }
+        GridPane.setConstraints(textFields,0,0);
+        layout.getChildren().addAll(textFields);
+
+        return layout;
+    }
+
 
     public static Button buttonFactory(String btnText){
 

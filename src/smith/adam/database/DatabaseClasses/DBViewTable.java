@@ -154,7 +154,7 @@ public class DBViewTable extends Application {
 
     private static ObservableList<Clients> getClients() throws Exception{ //Uses JavaFX's ObservableList to store object for building a Table
         ObservableList<Clients> clients_fx = FXCollections.observableArrayList();
-        List<Clients> list = new LinkedList<>();
+        List<Clients> list;
         list = SqlStatements.getPeople(); // returns all the rows in the Clients Database
         for(Clients person : list){
             clients_fx.add(person); //add the client to the FX array
