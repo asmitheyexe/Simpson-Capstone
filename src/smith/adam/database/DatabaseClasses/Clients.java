@@ -1,18 +1,16 @@
 package smith.adam.database.DatabaseClasses;
 
 public class Clients {
-    private String firstName;
-    private String lastName;
 
-
-
+    final private String firstName;
+    final private String lastName;
     private int client_id;
-    private String phoneNumber;
-    private String streetAdr;
-    private String unit;
-    private String city;
-    private String state;
-    private String zip;
+    final private String phoneNumber;
+    final private String streetAdr;
+    final private String unit;
+    final private String city;
+    final private String state;
+    final private String zip;
 
 
     public Clients(){
@@ -65,78 +63,30 @@ public class Clients {
 
     public int getClient_id() {return client_id;}
 
-    public void setClient_id(int client_id) {this.client_id = client_id;}
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
+    public String getFirstName() {return firstName;}
     public String getLastName() {
         return lastName;
     }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public int getId() {
         return client_id;
     }
-
-    public void setId(int id) {
-        this.client_id = id;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getStreetAdr() {
         return streetAdr;
     }
-
-    public void setStreetAdr(String streetAdr) {
-        this.streetAdr = streetAdr;
-    }
-
     public String getUnit() {
         return unit;
     }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
     public String getCity() {
         return city;
     }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getState() {
         return state;
     }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getZip() {
         return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
     }
 
     public String toString(){

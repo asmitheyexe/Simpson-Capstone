@@ -5,34 +5,12 @@ package smith.adam.database.DatabaseClasses;
  *
  */
 
-import javafx.scene.control.TextField;
-import java.util.regex.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
 public class GetClientsDAO {
-
-//    public static Clients makePersonSingle(ResultSet rs) {
-//        List<String> strings = new LinkedList<>();
-//        List<String> columns = DatabaseColumnNames.returnColumns();
-//
-//        try {
-//            for(int i = 0; i < columns.size() - 2; i++){
-//                strings.add(rs.getString(columns.get(i)));
-//            }
-//            int id = rs.getInt(9);
-//            Clients client = new Clients(strings.get(0), strings.get(1), strings.get(2), strings.get(3), strings.get(4), strings.get(5), strings.get(6), strings.get(7), id);
-//            return client;
-//
-//            }
-//
-//
-//        }catch(Exception C){System.out.println(C);}
-//        return client;
-//    }
 
 
     public static Clients makePerson(ResultSet rs)throws Exception {
@@ -48,7 +26,7 @@ public class GetClientsDAO {
             return client;
 
 
-        }catch(Exception C){System.out.println(C);}
+        }catch(Exception C){System.out.println("Error In GetClientsDAO MakePerson "+C);}
         return new Clients();
     }
 
@@ -68,19 +46,19 @@ public class GetClientsDAO {
             }
 
 
-        }catch(Exception C){System.out.println(C);}
+        }catch(Exception C){System.out.println("Error in GetClientsDAO MakePersonSingle " + C);}
         return new Clients();
     }
 
     public static List<Clients> getAllClients(ResultSet rs) {
         List<Clients> clients = new LinkedList<>();
-        Clients client = new Clients();
+        Clients client;
         try {
             while (rs.next()) {
                 client = makePerson(rs);
                 clients.add(client);
             }
-        }catch(Exception C){System.out.println(C);}
+        }catch(Exception C){System.out.println("Error in GetClientsDAO getAllClients "+C);}
         return clients;
     }
 

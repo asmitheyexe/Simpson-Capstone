@@ -31,7 +31,7 @@ public class DataValidation {
         return Pattern.matches(zipPattern, zip);
     }
 
-    public Clients validateEntry(Clients person){
+    public static Clients validateEntry(Clients person){
         int[] dataIsValid = new int[5];
         if(DataValidation.isFirstLastNamePattern(person.getFirstName()) && DataValidation.isFirstLastNamePattern(person.getLastName())){
             dataIsValid[0] = 1;
@@ -50,7 +50,8 @@ public class DataValidation {
             System.out.println("Phone Number is bad");
         }
 
-        if(DataValidation.isUnitPattern(person.getUnit())){
+        if(DataValidation.isUnitPattern(person.getUnit()) || person.getUnit().equals("")){
+
             dataIsValid[2] =1;
         }else{
             /*

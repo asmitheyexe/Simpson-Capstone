@@ -1,5 +1,9 @@
 package smith.adam.database.DatabaseClasses;
 
+/*
+    This class is responsible for building the GUI table scene. It takes the all the rows in the database and assigns the
+    values that corresponds with each column name specified.
+ */
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -87,15 +91,15 @@ public class DBViewTable extends Application {
 
     public static TableView<Clients> makeColumns() throws Exception{
         TableView<Clients> table;
-        String firstName = "firstName";
-        String lastName = "lastName";
-        String client_id = "client_id";
-        String phoneNum = "phoneNumber";
-        String streetAdr =  "streetAdr";
-        String city =  "city";
-        String state =  "state";
-        String unit =  "unit";
-        String zip =  "zip";
+        String firstName = DatabaseColumnNames.getFirstNameColumn();
+        String lastName = DatabaseColumnNames.getLastNameColumn();
+        String client_id = DatabaseColumnNames.getIdColumn();
+        String phoneNum = DatabaseColumnNames.getPhoneColumn();
+        String streetAdr =  DatabaseColumnNames.getStreetAddressColumm();
+        String city =  DatabaseColumnNames.getCityColumn();
+        String state =  DatabaseColumnNames.getStateColumn();
+        String unit =  DatabaseColumnNames.getUnitColumn();
+        String zip =  DatabaseColumnNames.getZipColumn();
 
         List<String> columnNames;
 

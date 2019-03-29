@@ -1,11 +1,11 @@
 package smith.adam.database.DatabaseClasses;
 /*
-    TEXTFIELD PARAMATERS : extField inputLastName,TextField inputPhone,TextField inputStreetAdr,TextField inputUnit,TextField inputCity,TextField inputState,TextField inputZip
+    TEXTFIELD PARAMATERS : TextField inputFirstName, TextField inputLastName,TextField inputPhone,TextField inputStreetAdr,TextField inputUnit,TextField inputCity,TextField inputState,TextField inputZip
 
 
  */
 import javafx.scene.control.TextField;
-import org.w3c.dom.Text;
+import javafx.scene.text.Text;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,18 +19,8 @@ public class TextFieldFactory {
         return inputField;
     }
 
-    public static Clients makePersonFromTextFields(TextField inputFirstName, TextField inputLastName,TextField inputPhone,TextField inputStreetAdr,TextField inputUnit,TextField inputCity,TextField inputState,TextField inputZip, int id){
-        List<TextField> fields = new LinkedList<>();
-        fields.add(inputFirstName);
-        fields.add(inputLastName);
-        fields.add(inputPhone);
-        fields.add(inputStreetAdr);
-        fields.add(inputUnit);
-        fields.add(inputCity);
-        fields.add(inputState);
-        fields.add(inputZip);
-
-        return extractText(fields, id);
+    public static Clients makePersonFromTextFields(List<TextField> texts, int id){
+        return extractText(texts, id);
 
     }
 
@@ -41,11 +31,9 @@ public class TextFieldFactory {
         List<String> strings = new LinkedList<>();
         for(TextField field : listOfFields){
             strings.add(field.getText());
+            System.out.println(field.getText());
         }
-
-        Clients person = new Clients(strings.get(0), strings.get(1), strings.get(2), strings.get(3), strings.get(4), strings.get(5), strings.get(6), strings.get(7), id);
-        return person;
-
+        return new Clients(strings.get(0), strings.get(1), strings.get(2), strings.get(3), strings.get(4), strings.get(5), strings.get(6), strings.get(7), id);
 
     }
 }

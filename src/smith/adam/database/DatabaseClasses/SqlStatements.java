@@ -4,17 +4,13 @@ package smith.adam.database.DatabaseClasses;
 
 
 import javax.xml.crypto.Data;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
 public class SqlStatements {
 
     public static List<Clients> getPeople() throws Exception{
-        DatabaseColumnNames columns = new DatabaseColumnNames();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -23,7 +19,7 @@ public class SqlStatements {
             List<Clients> clients = new LinkedList<>();
             conn = DBConnection.getConnection();
 
-            String sql = "SELECT * FROM JASWData.Clients ORDER BY "+columns.getFirstNameColumn()+";";
+            String sql = "SELECT * FROM JASWData.Clients ORDER BY "+DatabaseColumnNames.getFirstNameColumn()+";";
 
             stmt = conn.prepareStatement(sql);
 
@@ -46,45 +42,13 @@ public class SqlStatements {
     }
 
 
-    // help from https://stackoverflow.com/questions/696782/retrieve-column-names-from-java-sql-resultset on this method
-    //this method will help automate the column names without hardcoding it
-    public static ResultSetMetaData getAllColumns() throws Exception{
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        try{
-            conn = DBConnection.getConnection();
-
-            String sql = "SELECT * FROM JASWData.Clients;";
-
-            stmt = conn.prepareStatement(sql);
-
-            rs = stmt.executeQuery();
-            ResultSetMetaData rsmd = rs.getMetaData();
-            System.out.println(rsmd.getColumnName(1));
-            return rsmd;
-
-        } catch(Exception e){
-            System.out.println("Error in SQLStatments when Retreiving columns from database" + e);
-        }
-        finally{
-
-            stmt.close();
-            rs.close();
-        }
-        return null; //idk how to handle returning out of try catchs or if statements
-    }
-
     public static void deletePerson(int id) throws Exception{
         Connection conn = null;
         PreparedStatement stmt = null;
-        DatabaseColumnNames columns= new DatabaseColumnNames();
-
         try{
             conn = DBConnection.getConnection();
 
-            String sql = "DELETE FROM JASWData.Clients  WHERE  "+ columns.getIdColumn() +"= ?;";
+            String sql = "DELETE FROM JASWData.Clients  WHERE  "+ DatabaseColumnNames.getIdColumn() +"= ?;";
 
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1,id);
@@ -100,8 +64,49 @@ public class SqlStatements {
         }
     }
 
-    public void updatePerson(){
+    public static void updatePerson(Clients person){
+        Connection conn = null;
+        PreparedStatement stmt = null;
 
+        try {
+            conn = DBConnection.getConnection();
+
+
+            String sql = "UPDATE JASWData.Clients SET "+DatabaseColumnNames.getFirstNameColumn()+"= ?,"+
+                    DatabaseColumnNames.getLastNameColumn()+ " =?," +DatabaseColumnNames.getPhoneColumn() +" =?," +
+                    DatabaseColumnNames.getStreetAddressColumm()+" =?,"+DatabaseColumnNames.getUnitColumn()+" =?,"+
+                    DatabaseColumnNames.getCityColumn()+" =?,"+DatabaseColumnNames.getStateColumn()+" =?," +
+                    DatabaseColumnNames.getZipColumn() +" =?"+" WHERE "+ DatabaseColumnNames.getIdColumn() + " =?;";
+
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, person.getFirstName());
+            stmt.setString(2, person.getLastName());
+            stmt.setString(3, person.getPhoneNumber());
+            stmt.setString(4, person.getStreetAdr());
+            stmt.setString(5, person.getUnit());
+            stmt.setString(6, person.getCity());
+            stmt.setString(7, person.getState());
+            stmt.setString(8, person.getZip());
+            stmt.setInt(9, person.getId());
+            stmt.executeUpdate();
+
+
+            DBViewTable.updateTable();
+
+
+
+
+        }catch(Exception c){
+            System.out.println("Error with inserting into the Database DB EDIT" + c);
+        }finally{
+            try {
+                conn.close();
+                stmt.close();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
     }
 
 
@@ -110,16 +115,16 @@ public class SqlStatements {
         Connection conn = null;
         PreparedStatement stmt = null;
 
+
+
         try{
             conn = DBConnection.getConnection();
 
-            DatabaseColumnNames columns = new DatabaseColumnNames();
-
-            String sql = "INSERT INTO JASWData.Clients ("+columns.getFirstNameColumn()+" = ?,"+
-                    columns.getLastNameColumn()+" = ?,"+columns.getPhoneColumn()+" = ?,"+
-                    columns.getStreetAddressColumm()+" = ?,"+columns.getUnitColumn()+" = ?,"+
-                    columns.getCityColumn()+" = ?,"+columns.getStateColumn()+" = ?,"+
-                    columns.getZipColumn()+"  = ?) VALUES (?,?,?,?,?,?,?,?);"; //GetClientsDAO contains public variables that contain
+            String sql = "INSERT INTO JASWData.Clients ("+DatabaseColumnNames.getFirstNameColumn()+" ,"+
+                    DatabaseColumnNames.getLastNameColumn()+" ,"+DatabaseColumnNames.getPhoneColumn()+" ,"+
+                    DatabaseColumnNames.getStreetAddressColumm()+","+DatabaseColumnNames.getUnitColumn()+" ,"+
+                    DatabaseColumnNames.getCityColumn()+" ,"+DatabaseColumnNames.getStateColumn()+","+
+                    DatabaseColumnNames.getZipColumn()+") VALUES (?,?,?,?,?,?,?,?);"; //DatabaseColumnNames contains public variables that contain
                                                                      // the names of the columns
 
 
@@ -138,7 +143,7 @@ public class SqlStatements {
             stmt.execute();
 
         } catch(Exception e){
-            System.out.println(e);
+            System.out.println("SqlStatments Error in Insert Person "+ e);
         }finally{
             conn.close();
             stmt.close();
@@ -147,7 +152,6 @@ public class SqlStatements {
 
     public static Clients editRecord(int ID) throws Exception {
 
-        DatabaseColumnNames columnNames = new DatabaseColumnNames();
         Clients person;
 
         Connection conn = null;
@@ -157,7 +161,7 @@ public class SqlStatements {
         try {
             conn = DBConnection.getConnection();
 
-            String sql = "SELECT * FROM JASWData.Clients WHERE "+ columnNames.getIdColumn() +" = ?;";
+            String sql = "SELECT * FROM JASWData.Clients WHERE "+ DatabaseColumnNames.getIdColumn() +" = ?;";
 
 
             stmt = conn.prepareStatement(sql);
@@ -170,7 +174,7 @@ public class SqlStatements {
 
 
         } catch (Exception e) {
-            System.out.println("Error when editing Client");
+            System.out.println("Error when editing Client " + e);
         } finally {
             try {
                 conn.close();
@@ -178,7 +182,7 @@ public class SqlStatements {
                 rs.close();
             }
             catch(Exception E){
-                System.out.println("Error with Closing connection in SQLStatments Edit");
+                System.out.println("Error with Closing connection in SQLStatments Edit" + E);
             }
         }
         return new Clients(); // for any reason it fails to edit return empty person object
