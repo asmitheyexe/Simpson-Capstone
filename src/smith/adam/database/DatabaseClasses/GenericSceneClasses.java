@@ -1,7 +1,6 @@
 package smith.adam.database.DatabaseClasses;
 
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -76,9 +75,6 @@ public class GenericSceneClasses {
         GridPane layout = new GridPane();
         layout.setPadding(new Insets(10,10,10,10));
 
-
-
-
         VBox sideButtons = new VBox(btn);
         sideButtons.setPadding(new Insets(10));
         GridPane.setConstraints(sideButtons,1,0);
@@ -92,11 +88,8 @@ public class GenericSceneClasses {
         GridPane.setConstraints(textFields,0,0);
         layout.getChildren().addAll(textFields);
 
-
         return layout;
-
     }
-
 
     public static Button buttonFactory(String btnText){
 

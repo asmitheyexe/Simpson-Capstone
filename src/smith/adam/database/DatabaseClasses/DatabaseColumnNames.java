@@ -8,7 +8,6 @@ package smith.adam.database.DatabaseClasses;
     To speed up the program i will just store the columns in private variables with getters
 
  */
-import java.sql.ResultSetMetaData;
 import java.util.LinkedList;
 import java.util.List;
 

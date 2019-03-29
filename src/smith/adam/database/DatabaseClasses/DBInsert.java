@@ -18,11 +18,8 @@ public class DBInsert extends Application{
     private static Stage newWindow;
     private static Clients person = new Clients();
 
-
-
     @Override
     public void start(Stage primaryStage) throws Exception{
-
     }
 
     public static void openWindow(){
@@ -37,11 +34,9 @@ public class DBInsert extends Application{
         List<TextField> listOfFields = GenericSceneClasses.insertSceneFields(person);
         Button insertBtn = GenericSceneClasses.buttonFactory(btnText);
 
-
         insertBtn.setOnAction(e -> {
             try {
                 person = TextFieldFactory.makePersonFromTextFields(listOfFields, person.getClient_id());
-                System.out.println(person.toString());
                 person = DataValidation.validateEntry(person); // this will validate all the fields. it will either return a Clients Obj if all fields match the Patterns else it will return an Empty Person Obj
                 if(!person.getFirstName().equals("")){
                     SqlStatements.insertPerson(person); //insert the person into the database
@@ -64,17 +59,5 @@ public class DBInsert extends Application{
             }catch(Exception c){System.out.println("Error with creating client " + c);}
         });
         return new Scene(GenericSceneClasses.returnInsertEditScene(insertBtn,listOfFields));
-
     }
-
-
-
-
-
-
-
-
-
-
-
 }

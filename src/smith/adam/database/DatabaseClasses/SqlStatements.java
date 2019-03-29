@@ -1,9 +1,6 @@
 package smith.adam.database.DatabaseClasses;
 
 
-
-
-import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -91,11 +88,7 @@ public class SqlStatements {
             stmt.setInt(9, person.getId());
             stmt.executeUpdate();
 
-
             DBViewTable.updateTable();
-
-
-
 
         }catch(Exception c){
             System.out.println("Error with inserting into the Database DB EDIT" + c);
@@ -109,13 +102,10 @@ public class SqlStatements {
         }
     }
 
-
     public static void insertPerson(Clients person) throws Exception{
 
         Connection conn = null;
         PreparedStatement stmt = null;
-
-
 
         try{
             conn = DBConnection.getConnection();
@@ -127,9 +117,7 @@ public class SqlStatements {
                     DatabaseColumnNames.getZipColumn()+") VALUES (?,?,?,?,?,?,?,?);"; //DatabaseColumnNames contains public variables that contain
                                                                      // the names of the columns
 
-
             stmt = conn.prepareStatement(sql);
-
 
             stmt.setString(1, person.getFirstName());
             stmt.setString(2, person.getLastName());
@@ -172,7 +160,6 @@ public class SqlStatements {
 
             return person;
 
-
         } catch (Exception e) {
             System.out.println("Error when editing Client " + e);
         } finally {
@@ -187,5 +174,4 @@ public class SqlStatements {
         }
         return new Clients(); // for any reason it fails to edit return empty person object
     }
-
 }

@@ -2,11 +2,8 @@ package smith.adam.database.DatabaseClasses;
 /*
     TEXTFIELD PARAMATERS : TextField inputFirstName, TextField inputLastName,TextField inputPhone,TextField inputStreetAdr,TextField inputUnit,TextField inputCity,TextField inputState,TextField inputZip
 
-
  */
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,9 +20,6 @@ public class TextFieldFactory {
         return extractText(texts, id);
 
     }
-
-
-
 
     private static Clients extractText(List<TextField> listOfFields, int id){
         List<String> strings = new LinkedList<>();

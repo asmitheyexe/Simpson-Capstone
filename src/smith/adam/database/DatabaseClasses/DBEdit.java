@@ -71,8 +71,6 @@ public class DBEdit extends Application {
         return new Scene(layout);
     }
 
-
-
     private static Scene makeEditScene() throws Exception{
 
         final String btnText = "Save and Insert into Database";
