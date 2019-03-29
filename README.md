@@ -23,3 +23,9 @@ The File that is used to get a connection to the database is not included. I wil
 - Added Error alert boxes when user enters wrong information into the text fields while inserting a new client into the database
 - Started creating the invoice GUI. loads and pops up but nothing has functionality yet.
 - Going to make a invoice template
+
+# Sources
+- If I use exact code examples I give a link to the post in the comments in the code.
+- https://docs.oracle.com/javafx/2/get_started/jfxpub-get_started.htm
+- https://stackoverflow.com/
+- https://www.geeksforgeeks.org/
