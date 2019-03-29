@@ -15,3 +15,7 @@ The File that is used to get a connection to the database is not included. I wil
 
 3/28/19 - UPDATE
 - Tried making the code less hard coded. The program runs slower due to constant calls to the database to retrieve column names. Need to figure out a way to store Column names in memory on startup so i dont need to keep calling the Database everytime I make a SQL statement for just column names. DOCUMENT MY CODE.
+3/29/19 - UPDATE
+- Decided to just keep column names in a Class all on their own with getters and just update the column names manually for now so I don't have to sacrifices program speed and make unecessary calls to the database.
+- Removed excess space
+- Changed functionality of how some classes make Scenes. Now there is a Generic class for making Scenes that will return a GridPane
