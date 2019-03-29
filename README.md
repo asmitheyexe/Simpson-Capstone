@@ -20,3 +20,6 @@ The File that is used to get a connection to the database is not included. I wil
 - Decided to just keep column names in a Class all on their own with getters and just update the column names manually for now so I don't have to sacrifices program speed and make unecessary calls to the database.
 - Removed excess space
 - Changed functionality of how some classes make Scenes. Now there is a Generic class for making Scenes that will return a GridPane
+- Added Error alert boxes when user enters wrong information into the text fields while inserting a new client into the database
+- Started creating the invoice GUI. loads and pops up but nothing has functionality yet.
+- Going to make a invoice template
