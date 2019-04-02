@@ -1,6 +1,6 @@
 package smith.adam.database.DatabaseClasses;
 /*
-    TEXTFIELD PARAMATERS : TextField inputFirstName, TextField inputLastName,TextField inputPhone,TextField inputStreetAdr,TextField inputUnit,TextField inputCity,TextField inputState,TextField inputZip
+    TEXTFIELD PARAMATERS : TextField inputFirstName, TextField inputLastName,TextField inputPhone, TextField inputCompany ,TextField inputStreetAdr,TextField inputUnit,TextField inputCity,TextField inputState,TextField inputZip
 
  */
 import javafx.scene.control.TextField;
@@ -26,7 +26,7 @@ public class TextFieldFactory {
         for(TextField field : listOfFields){
             strings.add(field.getText());
         }
-        return new Clients(strings.get(0), strings.get(1), strings.get(2), strings.get(3), strings.get(4), strings.get(5), strings.get(6), strings.get(7), id);
+        return new Clients(strings.get(0), strings.get(1), strings.get(2),strings.get(3), strings.get(4), strings.get(5), strings.get(6), strings.get(7), strings.get(8), id);
 
     }
 }

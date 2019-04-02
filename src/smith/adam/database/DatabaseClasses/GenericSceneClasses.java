@@ -16,6 +16,7 @@ public class GenericSceneClasses {
         final String firstNamePromptText = "Enter First Name";
         final String lastNamePromptText = "Enter Last Name";
         final String phonePromptText = "Enter Phone Number (555-555-5555)";
+        final String companyNamePromptText = "Enter Company name if applicable";
         final String streetAddrPromptText = "Enter Street Address";
         final String unitPromptText = "Enter Unit if Applicable";
         final String cityPromptText = "Enter City";
@@ -37,6 +38,11 @@ public class GenericSceneClasses {
         final TextField inputPhone = TextFieldFactory.makeTextField(phonePromptText);
         inputPhone.setText(person.getPhoneNumber());
         listOfFields.add(inputPhone);
+
+        //input company
+        final TextField inputCompany = TextFieldFactory.makeTextField(companyNamePromptText);
+        inputCompany.setText(person.getCompanyName());
+        listOfFields.add(inputCompany);
 
         //input street Address
         final TextField inputStreetAdr = TextFieldFactory.makeTextField(streetAddrPromptText);

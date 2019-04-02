@@ -2,21 +2,23 @@ package smith.adam.database.DatabaseClasses;
 
 public class Clients {
 
-    final private String firstName;
-    final private String lastName;
+    private final String firstName;
+    private final String lastName;
     private int client_id;
-    final private String phoneNumber;
-    final private String streetAdr;
-    final private String unit;
-    final private String city;
-    final private String state;
-    final private String zip;
+    private final String phoneNumber;
+    private final String companyName;
+    private final String streetAdr;
+    private final String unit;
+    private final String city;
+    private final String state;
+    private final String zip;
 
 
     public Clients(){
         this.firstName = "";
         this.lastName = "";
         this.phoneNumber = "";
+        this.companyName = "";
         this.streetAdr = "";
         this.unit = "";
         this.city = "";
@@ -25,11 +27,12 @@ public class Clients {
 
     }
 
-    public Clients(String firstName, String lastName, String phoneNum, String streetAddr, String unit, String city, String state, String zip, int id){ // constructor with all fields
+    public Clients(String firstName, String lastName, String phoneNum, String companyName, String streetAddr, String unit, String city, String state, String zip, int id){ // constructor with all fields
         this.firstName = firstName; //first name
         this.lastName = lastName; //last name
         this.client_id = id; // id, auto increments in the DATABASE
         this.phoneNumber = phoneNum; // phone number
+        this.companyName = companyName;
         this.streetAdr = streetAddr; // street address
         this.unit = unit; //unit if applicable
         this.city = city; // city
@@ -37,11 +40,12 @@ public class Clients {
         this.zip = zip; //zip code
     }
 
-    public Clients(String firstName, String lastName, String phoneNum, String streetAddr, String city, String state, String zip, int id){ //Constructor without a unit, non apartment type building
+    public Clients(String firstName, String lastName, String phoneNum, String companyName, String streetAddr, String city, String state, String zip, int id){ //Constructor without a unit, non apartment type building
         this.firstName = firstName; //first name
         this.lastName = lastName; //last name
         this.client_id = id; // id, auto increments in the DATABASE
         this.phoneNumber = phoneNum; // phone number
+        this.companyName = companyName; // has company name associated
         this.streetAdr = streetAddr; // street address
         this.city = city; // city
         this.state = state; // state
@@ -49,16 +53,68 @@ public class Clients {
         this.unit = "";
     }
 
-    public Clients(String firstName, String lastName, String phoneNum, String streetAddr, String unit, String city, String state, String zip){ //Constructor without a id
+    public Clients(String firstName, String lastName, String phoneNum, String streetAddr, String city, String state, String zip, int id){ //Constructor without a unit, non apartment type building no company
         this.firstName = firstName; //first name
         this.lastName = lastName; //last name
+        this.client_id = id; // id, auto increments in the DATABASE
         this.phoneNumber = phoneNum; // phone number
+        this.companyName = ""; // has company name associated
         this.streetAdr = streetAddr; // street address
         this.city = city; // city
         this.state = state; // state
         this.zip = zip; //zip code
         this.unit = "";
     }
+
+    public Clients(String firstName, String lastName, String phoneNum, String companyName, String streetAddr, String unit, String city, String state, String zip){ // constructor with no id
+        this.firstName = firstName; //first name
+        this.lastName = lastName; //last name
+        this.phoneNumber = phoneNum; // phone number
+        this.companyName = companyName;
+        this.streetAdr = streetAddr; // street address
+        this.unit = unit; //unit if applicable
+        this.city = city; // city
+        this.state = state; // state
+        this.zip = zip; //zip code
+    }
+
+    public Clients(String firstName, String lastName, String phoneNum, String companyName, String streetAddr, String city, String state, String zip, boolean isCompany){ //Constructor without a unit MUST PASS IN SOME BOOLEAN TO GET THIS CONSTRUCTOR
+        this.firstName = firstName; //first name
+        this.lastName = lastName; //last name
+        this.phoneNumber = phoneNum; // phone number
+        this.companyName = companyName;
+        this.streetAdr = streetAddr; // street address
+        this.city = city; // city
+        this.state = state; // state
+        this.zip = zip; //zip code
+        this.unit = "";
+    }
+
+    public Clients(String firstName, String lastName, String phoneNum, String streetAddr, String unit, String city, String state, String zip){ //Constructor without company name
+        this.firstName = firstName; //first name
+        this.lastName = lastName; //last name
+        this.phoneNumber = phoneNum; // phone number
+        this.companyName = "";
+        this.streetAdr = streetAddr; // street address
+        this.city = city; // city
+        this.state = state; // state
+        this.zip = zip; //zip code
+        this.unit = unit;
+    }
+
+    public Clients(String firstName, String lastName, String phoneNum, String streetAddr, String city, String state, String zip){ //Constructor without a company or unit
+        this.firstName = firstName; //first name
+        this.lastName = lastName; //last name
+        this.phoneNumber = phoneNum; // phone number
+        this.companyName = "";
+        this.streetAdr = streetAddr; // street address
+        this.city = city; // city
+        this.state = state; // state
+        this.zip = zip; //zip code
+        this.unit = "";
+    }
+
+
 
 
     public int getClient_id() {return client_id;}
@@ -67,15 +123,16 @@ public class Clients {
     public String getLastName() {
         return lastName;
     }
+    public String getCompanyName() {
+        return companyName;
+    }
     public int getId() {
         return client_id;
     }
     public String getPhoneNumber() {
         return phoneNumber;
     }
-    public String getStreetAdr() {
-        return streetAdr;
-    }
+    public String getStreetAdr() {return streetAdr;}
     public String getUnit() {
         return unit;
     }
@@ -89,14 +146,19 @@ public class Clients {
         return zip;
     }
 
-    public String toString(){
-        String out;
-        if (this.unit == null){
-            out = this.firstName + " " + this.lastName + " " + this.phoneNumber + " " + this.streetAdr + " " + this.city + " " + this.city + " " + this.zip;
-            return out;
-        }else {
-            out = this.firstName + " " + this.lastName + " " + this.phoneNumber + " " + this.streetAdr + " " + this.unit + " " + this.city + " " + this.city + " " + this.zip;
-            return out;
-        }
+    @Override
+    public String toString() {
+        return "Clients{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", client_id=" + client_id +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", streetAdr='" + streetAdr + '\'' +
+                ", unit='" + unit + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                '}';
     }
 }

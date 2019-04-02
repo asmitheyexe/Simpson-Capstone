@@ -71,6 +71,7 @@ public class SqlStatements {
 
             String sql = "UPDATE JASWData.Clients SET "+DatabaseColumnNames.getFirstNameColumn()+"= ?,"+
                     DatabaseColumnNames.getLastNameColumn()+ " =?," +DatabaseColumnNames.getPhoneColumn() +" =?," +
+                    DatabaseColumnNames.getCompanyNameColumn() +" =?," +
                     DatabaseColumnNames.getStreetAddressColumm()+" =?,"+DatabaseColumnNames.getUnitColumn()+" =?,"+
                     DatabaseColumnNames.getCityColumn()+" =?,"+DatabaseColumnNames.getStateColumn()+" =?," +
                     DatabaseColumnNames.getZipColumn() +" =?"+" WHERE "+ DatabaseColumnNames.getIdColumn() + " =?;";
@@ -80,18 +81,19 @@ public class SqlStatements {
             stmt.setString(1, person.getFirstName());
             stmt.setString(2, person.getLastName());
             stmt.setString(3, person.getPhoneNumber());
-            stmt.setString(4, person.getStreetAdr());
-            stmt.setString(5, person.getUnit());
-            stmt.setString(6, person.getCity());
-            stmt.setString(7, person.getState());
-            stmt.setString(8, person.getZip());
-            stmt.setInt(9, person.getId());
+            stmt.setString(4, person.getCompanyName());
+            stmt.setString(5, person.getStreetAdr());
+            stmt.setString(6, person.getUnit());
+            stmt.setString(7, person.getCity());
+            stmt.setString(8, person.getState());
+            stmt.setString(9, person.getZip());
+            stmt.setInt(10, person.getId());
             stmt.executeUpdate();
 
             DBViewTable.updateTable();
 
         }catch(Exception c){
-            System.out.println("Error with inserting into the Database DB EDIT" + c);
+            System.out.println("Error with UPDATING the Database DB EDIT" + c);
         }finally{
             try {
                 conn.close();
@@ -112,9 +114,10 @@ public class SqlStatements {
 
             String sql = "INSERT INTO JASWData.Clients ("+DatabaseColumnNames.getFirstNameColumn()+" ,"+
                     DatabaseColumnNames.getLastNameColumn()+" ,"+DatabaseColumnNames.getPhoneColumn()+" ,"+
+                    DatabaseColumnNames.getCompanyNameColumn()+" ,"+
                     DatabaseColumnNames.getStreetAddressColumm()+","+DatabaseColumnNames.getUnitColumn()+" ,"+
                     DatabaseColumnNames.getCityColumn()+" ,"+DatabaseColumnNames.getStateColumn()+","+
-                    DatabaseColumnNames.getZipColumn()+") VALUES (?,?,?,?,?,?,?,?);"; //DatabaseColumnNames contains public variables that contain
+                    DatabaseColumnNames.getZipColumn()+") VALUES (?,?,?,?,?,?,?,?,?);"; //DatabaseColumnNames contains public variables that contain
                                                                      // the names of the columns
 
             stmt = conn.prepareStatement(sql);
@@ -122,11 +125,12 @@ public class SqlStatements {
             stmt.setString(1, person.getFirstName());
             stmt.setString(2, person.getLastName());
             stmt.setString(3, person.getPhoneNumber());
-            stmt.setString(4, person.getStreetAdr());
-            stmt.setString(5, person.getUnit());
-            stmt.setString(6, person.getCity());
-            stmt.setString(7, person.getState());
-            stmt.setString(8, person.getZip());
+            stmt.setString(4,person.getCompanyName());
+            stmt.setString(5, person.getStreetAdr());
+            stmt.setString(6, person.getUnit());
+            stmt.setString(7, person.getCity());
+            stmt.setString(8, person.getState());
+            stmt.setString(9, person.getZip());
 
             stmt.execute();
 

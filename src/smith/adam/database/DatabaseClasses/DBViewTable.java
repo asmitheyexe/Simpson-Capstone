@@ -95,6 +95,7 @@ public class DBViewTable extends Application {
         String lastName = DatabaseColumnNames.getLastNameColumn();
         String client_id = DatabaseColumnNames.getIdColumn();
         String phoneNum = DatabaseColumnNames.getPhoneColumn();
+        String companyName = DatabaseColumnNames.getCompanyNameColumn();
         String streetAdr =  DatabaseColumnNames.getStreetAddressColumm();
         String city =  DatabaseColumnNames.getCityColumn();
         String state =  DatabaseColumnNames.getStateColumn();
@@ -117,6 +118,11 @@ public class DBViewTable extends Application {
         TableColumn<Clients, String> phoneC = new TableColumn<>(phoneNum);
         phoneC.setMinWidth(100);
         phoneC.setCellValueFactory(new PropertyValueFactory<>(phoneNum));
+
+        //phone column
+        TableColumn<Clients, String> comapnyC = new TableColumn<>(companyName);
+        comapnyC.setMinWidth(50);
+        comapnyC.setCellValueFactory(new PropertyValueFactory<>(companyName));
 
         //street addr column
         TableColumn<Clients, String> streetAddrC = new TableColumn<>(streetAdr);
@@ -147,7 +153,7 @@ public class DBViewTable extends Application {
 
         table = new TableView<>();
         table.setItems(getClients());
-        table.getColumns().addAll(firstNameC, lastNameC, phoneC,streetAddrC, unitC, cityC,stateC,zipC,idC);
+        table.getColumns().addAll(firstNameC, lastNameC, phoneC,comapnyC,streetAddrC, unitC, cityC,stateC,zipC,idC);
 
         return table;
     }

@@ -21,10 +21,11 @@ public class GetClientsDAO {
             for(int i = 0; i < columns.size() - 1; i++){
                 strings.add(rs.getString(columns.get(i)));
             }
-            int id = rs.getInt(9);
-            Clients client = new Clients(strings.get(0), strings.get(1), strings.get(2), strings.get(3), strings.get(4), strings.get(5), strings.get(6), strings.get(7), id);
-            return client;
+            int id = rs.getInt(10);
+            boolean hasCompany = true;
 
+
+            return new Clients(strings.get(0), strings.get(1), strings.get(2), strings.get(3), strings.get(4), strings.get(5), strings.get(6), strings.get(7), strings.get(8), id);
 
         }catch(Exception C){System.out.println("Error In GetClientsDAO MakePerson "+C);}
         return new Clients();
@@ -39,10 +40,9 @@ public class GetClientsDAO {
                 for (int i = 0; i < columns.size() - 1; i++) {
                     strings.add(rs.getString(columns.get(i)));
                 }
-                int id = rs.getInt(9);
-                Clients client = new Clients(strings.get(0), strings.get(1), strings.get(2), strings.get(3), strings.get(4), strings.get(5), strings.get(6), strings.get(7), id);
-                System.out.println(id);
-                return client;
+                int id = rs.getInt(10);
+                return new Clients(strings.get(0), strings.get(1), strings.get(2), strings.get(3), strings.get(4), strings.get(5), strings.get(6), strings.get(7), strings.get(8), id);
+
             }
 
 

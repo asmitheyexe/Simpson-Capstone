@@ -25,7 +25,7 @@ public class BaseBidView {
         layout.add(title,2,0);
         layout.add(inputBox,2,1);
         layout.add(completeBtn,2,4);
-
+        layout.setVgap(10);
 
         return layout;
     }

@@ -1,16 +1,10 @@
 package smith.adam.database.DatabaseClasses;
 
-import javafx.geometry.Insets;
-import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.util.LinkedList;
 import java.util.List;
 
 public class DBInsert extends Application{

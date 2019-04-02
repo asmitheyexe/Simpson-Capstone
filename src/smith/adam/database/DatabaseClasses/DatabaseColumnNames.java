@@ -16,6 +16,7 @@ public class DatabaseColumnNames {
     final private static String firstNameColumn = "firstName";
     final private static String lastNameColumn = "lastName";
     final private static String phoneColumn = "phoneNumber";
+    final private static String companyNameColumn = "companyName";
     final private static String streetAddressColumm = "streetAdr";
     final private static String unitColumn = "unit";
     final private static String cityColumn = "city";
@@ -29,6 +30,7 @@ public class DatabaseColumnNames {
         columnNames.add(DatabaseColumnNames.getFirstNameColumn());
         columnNames.add(DatabaseColumnNames.getLastNameColumn());
         columnNames.add(DatabaseColumnNames.getPhoneColumn());
+        columnNames.add(DatabaseColumnNames.getCompanyNameColumn());
         columnNames.add(DatabaseColumnNames.getStreetAddressColumm());
         columnNames.add(DatabaseColumnNames.getUnitColumn());
         columnNames.add(DatabaseColumnNames.getCityColumn());
@@ -44,6 +46,8 @@ public class DatabaseColumnNames {
     public static String getLastNameColumn() {return lastNameColumn;}
 
     public static  String getPhoneColumn() {return phoneColumn;}
+
+    public static  String getCompanyNameColumn() {return companyNameColumn;}
 
     public static  String getStreetAddressColumm() {return streetAddressColumm;}
 
