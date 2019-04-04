@@ -31,14 +31,12 @@ public class DBEdit extends Application {
     private static Clients person = new Clients();
     @Override
     public void start(Stage primaryStage) throws Exception{
-
     }
 
     public static void openWindow(){
         newWindow = new Stage();
         newWindow.setScene(makeScene());
         newWindow.show();
-
     }
 
     private static Scene makeScene(){
@@ -81,10 +79,18 @@ public class DBEdit extends Application {
         saveBtn.setOnAction(e -> {
 
             person = TextFieldFactory.makePersonFromTextFields(listOfFields, person.getClient_id());
-            SqlStatements.updatePerson(person);
+            person = DataValidation.validateEntry(person);
+            if(!person.getFirstName().equals("")){
+                SqlStatements.updatePerson(person);
+                person = new Clients();
+                try{
+                    DBViewTable.updateTable();
+                }catch(Exception g){
+                    System.out.println("Error updating table in dbedit " + g);
+                }
 
-            newWindow.close();
-
+                newWindow.close();
+            }
         });
         return new Scene(GenericSceneClasses.returnInsertEditScene(saveBtn,listOfFields));
     }

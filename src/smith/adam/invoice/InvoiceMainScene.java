@@ -20,6 +20,18 @@ public class InvoiceMainScene extends Application {
         newWindow.show();
     }
 
+    public static void setWindowScene(Scene newScene){
+        newWindow.setScene(newScene);
+    }
+
+    public static void updateMainScreen(){
+        newWindow.setScene(mainBox());
+    }
+
+    public static void closeWindow(){
+        newWindow.close();
+    }
+
     private static Scene mainBox(){
         BorderPane layout = new BorderPane();
 
@@ -27,17 +39,13 @@ public class InvoiceMainScene extends Application {
         GridPane centerPane = new GridPane();
         GridPane rightPane = new GridPane();
 
-        leftPane.getChildren().addAll(CustomerViewBox.returnView());
+        leftPane.getChildren().addAll(CustomerViewBox.returnDefaultView());
         leftPane.setPadding(new Insets(10));
-        centerPane.getChildren().add(AdditionalCostView.returnAdditionCostView());
-        centerPane.setPadding(new Insets(10));
-        rightPane.getChildren().addAll(BaseBidView.returnBidView());
-        rightPane.setPadding(new Insets(10));
-
-
-        layout.setCenter(centerPane);
+        centerPane.add(BaseBidView.returnBidView(),0,0);
+        centerPane.add(AdditionalCostView.returnAdditionCostView(),0,1);
+        centerPane.setPadding(new Insets(20));
         layout.setLeft(leftPane);
-        layout.setRight(rightPane);
+        layout.setCenter(centerPane);
         return new Scene(layout);
     }
 }
