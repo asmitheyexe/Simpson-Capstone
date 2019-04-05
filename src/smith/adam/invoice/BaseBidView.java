@@ -9,13 +9,15 @@ import smith.adam.database.DatabaseClasses.TextFieldFactory;
 
 public class BaseBidView {
 
+    private static TextField inputBox;
+
     public static GridPane returnBidView(){
         String titlePrompt = "Base Bid";
         String bidPrompt = "Enter Base Bid";
         GridPane layout = new GridPane();
 
         Text title = new Text(titlePrompt);
-        TextField inputBox = TextFieldFactory.makeTextField(bidPrompt);
+        inputBox = TextFieldFactory.makeTextField(bidPrompt);
         inputBox.setPrefWidth(100);
 
         layout.add(title,2,0);
@@ -24,4 +26,6 @@ public class BaseBidView {
 
         return layout;
     }
+
+    public static TextField getBidField(){return inputBox;}
 }

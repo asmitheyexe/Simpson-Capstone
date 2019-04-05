@@ -13,6 +13,9 @@ import java.util.List;
 
 public class AdditionalCostView {
 
+    private static List<String> descriptions = new LinkedList<>();
+    private static List<Double> prices = new LinkedList<>();
+
     public static GridPane returnAdditionCostView(){
         String titlePrompt = "Addition Costs";
         String descriptionPrompt = "Enter Description of Service";
@@ -47,11 +50,13 @@ public class AdditionalCostView {
             priceField.setText("");
 
             //do something with the text and price Send to another class or something.
+            descriptions.add(textFromField);
+            prices.add(price);
 
         });
 
         completeBtn.setOnAction(e ->{
-
+            InvoiceExtractAllTexts.printAllTexts();
             // send data to a new class that will handle the creating of data to send to the python program.
             //close the invoice box
             InvoiceMainScene.closeWindow();
@@ -62,4 +67,6 @@ public class AdditionalCostView {
         layout.setVgap(10);
         return layout;
     }
+
+    public static InvoiceAdditionPairs getPricesAndDescriptions(){return new InvoiceAdditionPairs(descriptions, prices);}
 }
