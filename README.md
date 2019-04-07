@@ -27,7 +27,6 @@ The File that is used to get a connection to the database is not included. I wil
 4/7/19 - ALMOST FINAL COMMIT
 
 - Added a python script to generate invoices that is called after the user is done filling out the invoice form.
-- I did not add 138k lines i just added my project in PyCharm because idk
 
 # Sources
 - If I use exact code examples I give a link to the post in the comments in the code.
