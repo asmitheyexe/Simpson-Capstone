@@ -24,8 +24,18 @@ The File that is used to get a connection to the database is not included. I wil
 - Started creating the invoice GUI. loads and pops up but nothing has functionality yet.
 - Going to make a invoice template
 
+4/7/19 - ALMOST FINAL COMMIT
+
+- Added a python script to generate invoices that is called after the user is done filling out the invoice form.
+- I did not add 138k lines i just added my project in PyCharm because idk
+
 # Sources
 - If I use exact code examples I give a link to the post in the comments in the code.
 - https://docs.oracle.com/javafx/2/get_started/jfxpub-get_started.htm
 - https://stackoverflow.com/
 - https://www.geeksforgeeks.org/
+- https://stackoverflow.com/questions/18549704/create-a-new-line-in-javas-filewriter
+- https://www.journaldev.com/878/java-write-to-file
+- https://stackoverflow.com/questions/3743222/how-do-i-convert-datetime-to-date-in-python
+- https://stackoverflow.com/questions/961632/converting-integer-to-string-in-python
+- https://stackoverflow.com/questions/27267391/running-a-py-file-from-java/27267509
