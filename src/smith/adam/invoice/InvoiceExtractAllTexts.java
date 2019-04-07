@@ -20,7 +20,7 @@ public class InvoiceExtractAllTexts {
         String currentDirectory = System.getProperty("user.dir");
         String pathToFile = currentDirectory +"\\ExcelFiles\\DataFiles\\DataFile.txt";
 
-        String command = "python "+ currentDirectory+"\\ExcelFiles\\capstone_script\\venv\\capstone.py";
+        String command = "python "+ currentDirectory+"\\ExcelFiles\\capstone.py";
         System.out.println(command);
         File myFile = new File(pathToFile);
 
