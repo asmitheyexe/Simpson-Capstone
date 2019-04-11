@@ -3,6 +3,7 @@
 .idea
 out
 src/smith/adam/database/DatabaseClasses/storage/ConfigStuff/context.txt
+ExcelFiles/Template/JASWInvoiceTemplate.xlsx
 # Log file
 *.log
 
