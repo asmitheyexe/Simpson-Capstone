@@ -42,7 +42,7 @@ The File that is used to get a connection to the database is not included. I wil
 - https://stackoverflow.com/questions/3743222/how-do-i-convert-datetime-to-date-in-python
 - https://stackoverflow.com/questions/961632/converting-integer-to-string-in-python
 - https://stackoverflow.com/questions/27267391/running-a-py-file-from-java/27267509
-- https://www.geeksforgeeks.org/
 - https://stackoverflow.com/questions/18549704/create-a-new-line-in-javas-filewriter
+- https://www.geeksforgeeks.org/
 - https://www.journaldev.com/878/java-write-to-file
 
