@@ -78,9 +78,11 @@ public class SqlStatements {
 
             stmt = conn.prepareStatement(sql);
 
+            final String phoneNumber = makePhoneNumber(person.getPhoneNumber());
+
             stmt.setString(1, person.getFirstName());
             stmt.setString(2, person.getLastName());
-            stmt.setString(3, person.getPhoneNumber());
+            stmt.setString(3, phoneNumber);
             stmt.setString(4, person.getCompanyName());
             stmt.setString(5, person.getStreetAdr());
             stmt.setString(6, person.getUnit());
@@ -104,6 +106,22 @@ public class SqlStatements {
         }
     }
 
+    private static String makePhoneNumber(String number){
+
+        String phoneNumber = "";
+        final String tempPhone = number;
+        if(tempPhone.charAt(3) != '-'){
+            for(int i = 0; i < 3; i++){phoneNumber += tempPhone.charAt(i);}
+            phoneNumber += "-";
+            for(int i = 3; i < 6; i++){phoneNumber += tempPhone.charAt(i);}
+            phoneNumber += "-";
+            for(int i = 6; i < 10; i++){phoneNumber += tempPhone.charAt(i);}
+        }else{
+            phoneNumber = tempPhone;
+        }
+
+        return phoneNumber;
+    }
     public static void insertPerson(Clients person) throws Exception{
 
         Connection conn = null;
@@ -120,11 +138,13 @@ public class SqlStatements {
                     DatabaseColumnNames.getZipColumn()+") VALUES (?,?,?,?,?,?,?,?,?);"; //DatabaseColumnNames contains public variables that contain
                                                                      // the names of the columns
 
+            final String phoneNumber = makePhoneNumber(person.getPhoneNumber());
+
             stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, person.getFirstName());
             stmt.setString(2, person.getLastName());
-            stmt.setString(3, person.getPhoneNumber());
+            stmt.setString(3, phoneNumber);
             stmt.setString(4,person.getCompanyName());
             stmt.setString(5, person.getStreetAdr());
             stmt.setString(6, person.getUnit());

@@ -18,9 +18,10 @@ public class DBConnection {
 
 
     public static Connection getConnection() throws Exception {
-
+        //this will allow the program to be used without having to specify where the files are
         String currentDirectory = System.getProperty("user.dir");
 
+        //i store the information for the database in a txt file that is read in by the class and establishes a connection
         String fileName = currentDirectory +"\\src\\smith\\adam\\database\\DatabaseClasses\\storage\\ConfigStuff\\context.txt";
         FileReader inputFile = new FileReader(fileName); //Made this so the file for getting a DB connection would be fine to store on Github
         Scanner inputText = new Scanner(inputFile); // read in the context file for the information to connect to the database

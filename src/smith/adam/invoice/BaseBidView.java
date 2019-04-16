@@ -1,5 +1,8 @@
 package smith.adam.invoice;
-
+/*
+    This class creates a textfield for the bid to go into and can
+    return that textfield if another class needs it to extract text
+ */
 import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;

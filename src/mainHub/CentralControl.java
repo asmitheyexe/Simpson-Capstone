@@ -1,7 +1,11 @@
 package sample;
+//This has to be sample or the program doesnt work because it was originally
+//called sample but I changed it to mainHub
 
+/*
+    This class is responsible for the main screen the user will see on startup
 
-
+ */
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

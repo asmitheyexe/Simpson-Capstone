@@ -1,5 +1,9 @@
 package smith.adam.invoice;
-
+/*
+    This class generates the main scene class
+    It just acts as a glue for all the other classes
+    for the invoice process
+ */
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -20,10 +24,6 @@ public class InvoiceMainScene extends Application {
         newWindow.show();
     }
 
-    public static void setWindowScene(Scene newScene){
-        newWindow.setScene(newScene);
-    }
-
     public static void updateMainScreen(){
         newWindow.setScene(mainBox());
     }
@@ -33,11 +33,12 @@ public class InvoiceMainScene extends Application {
     }
 
     private static Scene mainBox(){
+        //This is the main thing the user sees
+
         BorderPane layout = new BorderPane();
 
         GridPane leftPane = new GridPane();
         GridPane centerPane = new GridPane();
-        GridPane rightPane = new GridPane();
 
         leftPane.getChildren().addAll(CustomerViewBox.returnDefaultView());
         leftPane.setPadding(new Insets(10));

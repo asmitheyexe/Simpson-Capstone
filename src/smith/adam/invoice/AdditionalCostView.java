@@ -1,5 +1,10 @@
 package smith.adam.invoice;
+/*
+    This class manages the additional costs the user may want to enter
+    The user doesnt have to enter any additional costs but it will allow the user
+    to enter up to 6 additional costs before the invoice will stop accepting
 
+ */
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -23,7 +28,6 @@ public class AdditionalCostView {
         String finishBtn = "Finish Invoice";
         String nextDescriptionPrompt = "Add additional description";
 
-        List<TextField> currentTextFields = new LinkedList<>();
 
         Button completeBtn = GenericSceneClasses.buttonFactory(finishBtn);
         GridPane layout = new GridPane();
@@ -59,7 +63,9 @@ public class AdditionalCostView {
             InvoiceExtractAllTexts.printAllTexts();
             // send data to a new class that will handle the creating of data to send to the python program.
             //close the invoice box
-            InvoiceMainScene.closeWindow();
+            if(InvoiceExtractAllTexts.checkPersonInfo()) {
+                InvoiceMainScene.closeWindow();
+            }
         });
         layout.add(nextDescBtn,1,3);
 
@@ -68,5 +74,10 @@ public class AdditionalCostView {
         return layout;
     }
 
-    public static InvoiceAdditionPairs getPricesAndDescriptions(){return new InvoiceAdditionPairs(descriptions, prices);}
+    public static InvoiceAdditionPairs getPricesAndDescriptions(){
+        InvoiceAdditionPairs returnPairs = new InvoiceAdditionPairs(descriptions, prices);
+        descriptions = new LinkedList<>(); //reset for next run
+        prices = new LinkedList<>();
+        return returnPairs;
+    }
 }
