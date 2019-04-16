@@ -45,4 +45,6 @@ The File that is used to get a connection to the database is not included. I wil
 - https://stackoverflow.com/questions/18549704/create-a-new-line-in-javas-filewriter
 - https://www.geeksforgeeks.org/
 - https://www.journaldev.com/878/java-write-to-file
+- https://www.youtube.com
+- Many Youtube tutorials.
 
