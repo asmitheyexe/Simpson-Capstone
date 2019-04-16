@@ -39,9 +39,10 @@ The File that is used to get a connection to the database is not included. I wil
 - If I use exact code examples I give a link to the post in the comments in the code.
 - https://docs.oracle.com/javafx/2/get_started/jfxpub-get_started.htm
 - https://stackoverflow.com/
-- https://www.geeksforgeeks.org/
-- https://stackoverflow.com/questions/18549704/create-a-new-line-in-javas-filewriter
-- https://www.journaldev.com/878/java-write-to-file
 - https://stackoverflow.com/questions/3743222/how-do-i-convert-datetime-to-date-in-python
 - https://stackoverflow.com/questions/961632/converting-integer-to-string-in-python
 - https://stackoverflow.com/questions/27267391/running-a-py-file-from-java/27267509
+- https://www.geeksforgeeks.org/
+- https://stackoverflow.com/questions/18549704/create-a-new-line-in-javas-filewriter
+- https://www.journaldev.com/878/java-write-to-file
+
