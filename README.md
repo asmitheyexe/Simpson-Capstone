@@ -28,6 +28,13 @@ The File that is used to get a connection to the database is not included. I wil
 
 - Added a python script to generate invoices that is called after the user is done filling out the invoice form.
 
+4/16/2019 - FINAL COMMIT I THINK
+
+- Added data validation of the Invoice text fields.
+- Minorly changed python script
+- Fixed bug wehre invoice text fields for customer info would disapear when user clicked the invoice button for a 2nd time in a row
+
+
 # Sources
 - If I use exact code examples I give a link to the post in the comments in the code.
 - https://docs.oracle.com/javafx/2/get_started/jfxpub-get_started.htm
