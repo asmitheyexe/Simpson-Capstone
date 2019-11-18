@@ -34,6 +34,7 @@ The File that is used to get a connection to the database is not included. I wil
 - Minorly changed python script
 - Fixed bug wehre invoice text fields for customer info would disapear when user clicked the invoice button for a 2nd time in a row
 
+Edit I look back at this after getting my first dev job and idk how I made it though with how badly I organized this lol :)
 
 # Sources
 - If I use exact code examples I give a link to the post in the comments in the code.
